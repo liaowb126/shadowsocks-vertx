@@ -104,9 +104,9 @@ public class Utils{
     }
 
 
-    public static byte[] md5(byte[] source) {
+    public static byte[] sha(byte[] source) {
         try {
-            MessageDigest md = MessageDigest.getInstance("MD5");
+            MessageDigest md = MessageDigest.getInstance("SHA-512");
             return md.digest(source);
         } catch (Exception e) {
             // 抛出去

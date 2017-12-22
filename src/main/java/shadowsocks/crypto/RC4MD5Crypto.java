@@ -11,7 +11,7 @@ public class RC4MD5Crypto extends BaseCrypto {
 
     private final static int IV_LENGTH = GlobalConfig.get().getIvLen();
 
-    private final static int KEY_LENGTH = 16;
+    private final static int KEY_LENGTH = 64;
 
     public RC4MD5Crypto(String name, String password) throws CryptoException {
         super(name, password);
@@ -35,7 +35,7 @@ public class RC4MD5Crypto extends BaseCrypto {
         System.arraycopy(mKey,0,data,0,KEY_LENGTH);
         System.arraycopy(iv,0,data,KEY_LENGTH,IV_LENGTH);
 
-        byte[] hash = Utils.md5(data);
+        byte[] hash = Utils.sha(data);
 
         c.init(encrypt, new KeyParameter(hash));
         return c;
