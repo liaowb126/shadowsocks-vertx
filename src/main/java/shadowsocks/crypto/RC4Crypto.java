@@ -7,13 +7,13 @@ import shadowsocks.util.GlobalConfig;
 
 import java.io.ByteArrayOutputStream;
 
-public class RC4MD5Crypto extends BaseCrypto {
+public class RC4Crypto extends BaseCrypto {
 
     private final static int IV_LENGTH = GlobalConfig.get().getIvLen();
 
     private final static int KEY_LENGTH = 64;
 
-    public RC4MD5Crypto(String name, String password) throws CryptoException {
+    public RC4Crypto(String name, String password) throws CryptoException {
         super(name, password);
     }
 

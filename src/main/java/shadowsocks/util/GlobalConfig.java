@@ -30,7 +30,7 @@ public class GlobalConfig{
     private AtomicBoolean mIsServerMode;
     private AtomicInteger mIvLen;// IV 长度
 
-    final private static String DEFAULT_METHOD = "aes-256-cfb";
+    final private static String DEFAULT_METHOD = "rc4-sha512";
     final private static String DEFAULT_PASSWORD = "123456";
     final private static String DEFAULT_SERVER = "127.0.0.1";
     final private static int DEFAULT_PORT = 8388;
