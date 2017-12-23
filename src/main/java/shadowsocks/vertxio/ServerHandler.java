@@ -15,6 +15,7 @@ import shadowsocks.util.LocalConfig;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.Arrays;
 
 public class ServerHandler implements Handler<Buffer> {
 
@@ -88,6 +89,17 @@ public class ServerHandler implements Handler<Buffer> {
         int bufferLength = mBufferQueue.length();
         String addr = null;
         int current = 0;
+        // 在 addrType 前，有8个0的校验码
+        byte[] check = new byte[8];
+        byte[] check0 = new byte[8];
+        mBufferQueue.getBytes(0,8,check);
+        if (!Arrays.equals(check,check0)) {// 不全是0，则校验失败
+            log.error("check error : " + Arrays.toString(check));
+            return true;
+        }
+
+        // 跳过8个0
+        compactBuffer(8);
 
         int addrType = mBufferQueue.getByte(0);
 

@@ -21,11 +21,13 @@ About vert.x, please refer to http://vertx.io/
 
 #Features
 
+Not compatible with original Shadowsocks!
+
 Not support ipv6.
 
 Supported encrypt method:
 
-    aes-256-cfb, chacha20, rc4-md5
+    rc4-sha512
 
 
 Support JSON config file. Please refer to https://github.com/shadowsocks/shadowsocks/wiki/Configuration-via-Config-File.
@@ -35,7 +37,7 @@ Note:
     2. Not support: fast_open. Java doesn't have such feature.
     3. Not support: workers. Vertx will set work thread number automatically.
     4. Additional: server_mode, set the running mode, true for the server, false for the client.
-    5. Additional: iv_len, set the iv length.
+    5. Additional: iv_len, set the iv length. It is recommended between 17 to 512. 
 
 You could refer to demo config etc/demo.json.
 

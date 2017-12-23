@@ -133,6 +133,9 @@ public class ClientHandler implements Handler<Buffer> {
         String addr = null;
         // Construct the remote header.
         Buffer remoteHeader = Buffer.buffer();
+        // 在 addrType 之前添加8个0作为IV的校验码
+        remoteHeader.appendBytes(new byte[8]);
+
         int addrType = mBufferQueue.getByte(0);
 
         remoteHeader.appendByte((byte)(addrType));
