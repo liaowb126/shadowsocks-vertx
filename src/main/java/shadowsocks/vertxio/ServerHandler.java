@@ -98,6 +98,16 @@ public class ServerHandler implements Handler<Buffer> {
         if (!Arrays.equals(check, CHECK0)) {// 不全是0，则校验失败
             log.error("check error : " + Arrays.toString(check));
             return true;
+        } else {// 校验成功后，进一步检查IV缓存
+            byte[] decrypt_iv = this.mCrypto.getIV(false);
+            // 添加到缓存
+            boolean flag = Client_IV_Cache.ins().add(decrypt_iv);
+            if (!flag) {// 已经存在，添加失败
+                log.error("the iv existNow ! " + Arrays.toString(decrypt_iv));
+                return true;
+            } else {
+                // TODO
+            }
         }
 
         // 跳过8个0
