@@ -11,8 +11,6 @@ shadowsocks-vertx is a lightweight tunnel proxy which can help you get through f
 
 Java 8 is needed.
 
-Current version 0.8.3.
-
 It is **unstable**! If you encounter any problems, please open an issue.
 
 About shadowsocks, please refer to https://shadowsocks.org/
@@ -21,7 +19,7 @@ About vert.x, please refer to http://vertx.io/
 
 #Features
 
-Not compatible with original Shadowsocks!
+**Not compatible with original Shadowsocks**!
 
 Not support ipv6.
 
@@ -38,6 +36,7 @@ Note:
     3. Not support: workers. Vertx will set work thread number automatically.
     4. Additional: server_mode, set the running mode, true for the server, false for the client.
     5. Additional: iv_len, set the iv length. It is recommended between 17 to 512. 
+    6. Not support: method, just only rc4-sha512 ! 
 
 You could refer to demo config etc/demo.json.
 
