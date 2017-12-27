@@ -35,6 +35,13 @@ public class Main{
             return;
         }
 
+        // iv.len 必须大于 16
+        if (GlobalConfig.get().getIvLen() <= 16) {
+            log.error("iv len must be greater than 16 !");
+            return ;
+        }
+
+
         //make sure this method could work.
         try{
             CryptoFactory.create(GlobalConfig.get().getMethod(), GlobalConfig.get().getPassword());
