@@ -5,5 +5,5 @@
     "local_port":1080,
     "password":"mypassword",
     "timeout":360,
-    "iv_len":3
+    "iv_len":31
 }
