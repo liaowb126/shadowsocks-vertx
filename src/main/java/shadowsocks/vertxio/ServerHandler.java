@@ -101,7 +101,7 @@ public class ServerHandler implements Handler<Buffer> {
         } else {// 校验成功后，进一步检查IV缓存
             byte[] decrypt_iv = this.mCrypto.getIV(false);
             // 添加到缓存
-            boolean flag = Client_IV_Cache.ins().add(decrypt_iv);
+            boolean flag = ClientIvCache.ins().add(decrypt_iv);
             if (!flag) {// 已经存在，添加失败
                 log.error("the iv existNow ! " + Arrays.toString(decrypt_iv));
                 return true;

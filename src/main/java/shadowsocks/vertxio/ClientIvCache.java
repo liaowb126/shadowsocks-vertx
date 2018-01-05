@@ -10,13 +10,13 @@ import java.util.LinkedList;
  * 单例类
  * IV 缓存，防止 Client 重放攻击
  */
-public class Client_IV_Cache {
+public class ClientIvCache {
 
-    public static Logger log = LogManager.getLogger(Client_IV_Cache.class);
+    public static Logger log = LogManager.getLogger(ClientIvCache.class);
 
-    private Client_IV_Cache (){}
-    private static Client_IV_Cache single = new Client_IV_Cache();
-    public static Client_IV_Cache ins(){
+    private ClientIvCache(){}
+    private static ClientIvCache single = new ClientIvCache();
+    public static ClientIvCache ins(){
         return single;
     }
 
@@ -64,7 +64,7 @@ public class Client_IV_Cache {
 
     // 测试
     public static void main(String[] args) {
-        Client_IV_Cache.ins().add(new byte[2]);
-        System.out.println(Client_IV_Cache.ins().add(new byte[2]));
+        ClientIvCache.ins().add(new byte[2]);
+        System.out.println(ClientIvCache.ins().add(new byte[2]));
     }
 }
