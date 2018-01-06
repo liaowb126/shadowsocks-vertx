@@ -62,9 +62,4 @@ public class ClientIvCache {
         return false;
     }
 
-    // 测试
-    public static void main(String[] args) {
-        ClientIvCache.ins().add(new byte[2]);
-        System.out.println(ClientIvCache.ins().add(new byte[2]));
-    }
 }
