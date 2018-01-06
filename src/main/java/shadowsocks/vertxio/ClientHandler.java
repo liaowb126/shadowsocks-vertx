@@ -11,6 +11,7 @@ import org.apache.logging.log4j.Logger;
 import shadowsocks.crypto.CryptoException;
 import shadowsocks.crypto.CryptoFactory;
 import shadowsocks.crypto.SSCrypto;
+import shadowsocks.util.CommonUtil;
 import shadowsocks.util.LocalConfig;
 
 import java.net.InetAddress;
@@ -133,8 +134,9 @@ public class ClientHandler implements Handler<Buffer> {
         String addr = null;
         // Construct the remote header.
         Buffer remoteHeader = Buffer.buffer();
-        // 在 addrType 之前添加8个0作为IV的校验码
-        remoteHeader.appendBytes(new byte[8]);
+        // 在 addrType 之前添加8个byte作为IV的校验码
+        long now = CommonUtil.getCurrTime();
+        remoteHeader.appendBytes(CommonUtil.long2Bytes(now));
 
         int addrType = mBufferQueue.getByte(0);
 

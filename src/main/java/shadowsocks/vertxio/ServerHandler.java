@@ -11,6 +11,7 @@ import org.apache.logging.log4j.Logger;
 import shadowsocks.crypto.CryptoException;
 import shadowsocks.crypto.CryptoFactory;
 import shadowsocks.crypto.SSCrypto;
+import shadowsocks.util.CommonUtil;
 import shadowsocks.util.LocalConfig;
 
 import java.net.InetAddress;
@@ -20,8 +21,6 @@ import java.util.Arrays;
 public class ServerHandler implements Handler<Buffer> {
 
     public static Logger log = LogManager.getLogger(ServerHandler.class.getName());
-
-    private static final byte[] CHECK0 = new byte[8];
 
     private final static int ADDR_TYPE_IPV4 = 1;
     private final static int ADDR_TYPE_HOST = 3;
@@ -91,11 +90,17 @@ public class ServerHandler implements Handler<Buffer> {
         int bufferLength = mBufferQueue.length();
         String addr = null;
         int current = 0;
-        // 在 addrType 前，有8个0的校验码
+        // 在 addrType 前，有8个byte的校验码
         byte[] check = new byte[8];
-
         mBufferQueue.getBytes(0,8,check);
-        if (!Arrays.equals(check, CHECK0)) {// 不全是0，则校验失败
+
+        long clientNow = CommonUtil.bytes2Long(check);// 用户传来的now
+        long serverNow = CommonUtil.getCurrTime();// 服务器的now
+        if (clientNow % CommonUtil.INTERVAL != 0
+                || Math.abs(serverNow - clientNow) > 2 * CommonUtil.INTERVAL) {
+            // 校验失败，分两种情况
+            // 不是 INTERVAL 的倍数
+            // 时间相差超过2倍的 INTERVAL
             log.error("check error : " + Arrays.toString(check));
             return true;
         } else {// 校验成功后，进一步检查IV缓存
