@@ -1,8 +1,8 @@
 package shadowsocks.util;
 
 import io.vertx.core.json.JsonObject;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import io.vertx.core.logging.Logger;
+import io.vertx.core.logging.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -14,7 +14,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class GlobalConfig{
 
-    private static Logger log = LogManager.getLogger(GlobalConfig.class.getName());
+    private static Logger log = LoggerFactory.getLogger(GlobalConfig.class);
 
     private static GlobalConfig mConfig;
 

@@ -1,7 +1,7 @@
 package shadowsocks.vertxio;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import io.vertx.core.logging.Logger;
+import io.vertx.core.logging.LoggerFactory;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -12,7 +12,7 @@ import java.util.LinkedList;
  */
 public class ClientIvCache {
 
-    public static Logger log = LogManager.getLogger(ClientIvCache.class);
+    private static Logger log = LoggerFactory.getLogger(ClientIvCache.class);
 
     private ClientIvCache(){}
     private static ClientIvCache single = new ClientIvCache();

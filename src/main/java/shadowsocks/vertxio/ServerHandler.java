@@ -3,11 +3,11 @@ package shadowsocks.vertxio;
 import io.vertx.core.Handler;
 import io.vertx.core.Vertx;
 import io.vertx.core.buffer.Buffer;
+import io.vertx.core.logging.Logger;
+import io.vertx.core.logging.LoggerFactory;
 import io.vertx.core.net.NetClient;
 import io.vertx.core.net.NetClientOptions;
 import io.vertx.core.net.NetSocket;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import shadowsocks.crypto.CryptoException;
 import shadowsocks.crypto.CryptoFactory;
 import shadowsocks.crypto.SSCrypto;
@@ -20,7 +20,7 @@ import java.util.Arrays;
 
 public class ServerHandler implements Handler<Buffer> {
 
-    public static Logger log = LogManager.getLogger(ServerHandler.class.getName());
+    private static Logger log = LoggerFactory.getLogger(ServerHandler.class);
 
     private final static int ADDR_TYPE_IPV4 = 1;
     private final static int ADDR_TYPE_HOST = 3;

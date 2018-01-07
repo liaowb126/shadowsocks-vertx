@@ -3,9 +3,9 @@ package shadowsocks;
 import io.vertx.core.Handler;
 import io.vertx.core.Vertx;
 import io.vertx.core.buffer.Buffer;
+import io.vertx.core.logging.Logger;
+import io.vertx.core.logging.LoggerFactory;
 import io.vertx.core.net.NetServer;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import shadowsocks.util.GlobalConfig;
 import shadowsocks.util.LocalConfig;
 import shadowsocks.vertxio.ClientHandler;
@@ -13,7 +13,7 @@ import shadowsocks.vertxio.ServerHandler;
 
 public class ShadowsocksVertx {
 
-    public static Logger log = LogManager.getLogger(ShadowsocksVertx.class.getName());
+    private static Logger log = LoggerFactory.getLogger(ShadowsocksVertx.class);
 
     private Vertx mVertx;
     private boolean mIsServer;

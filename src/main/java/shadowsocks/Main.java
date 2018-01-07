@@ -1,7 +1,7 @@
 package shadowsocks;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import io.vertx.core.logging.Logger;
+import io.vertx.core.logging.LoggerFactory;
 
 import shadowsocks.crypto.CryptoFactory;
 
@@ -9,12 +9,18 @@ import shadowsocks.util.GlobalConfig;
 
 public class Main{
 
-    private static Logger log = LogManager.getLogger(Main.class.getName());
+
 
     public static final String VERSION = "0.9.0";
 
     public static void main(String argv[])
     {
+
+        System.setProperty("vertx.logger-delegate-factory-class-name",
+                "io.vertx.core.logging.SLF4JLogDelegateFactory");
+
+        final Logger log = LoggerFactory.getLogger(Main.class);
+
         // IPV4 优先
         System.setProperty("java.net.preferIPv4Stack", "true");
         System.setProperty("java.net.preferIPv6Addresses", "false");
