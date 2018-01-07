@@ -40,7 +40,8 @@ public class ClientIvCache {
 
             if (ivList.size() > MAX) {// 如果超过 MAX
                 // 删除第一个
-                ivList.pollFirst();
+                 byte[] pollFirst = ivList.pollFirst();
+                log.info("ivList.pollFirst   " + Arrays.toString(pollFirst));
             }
 
             return true;
