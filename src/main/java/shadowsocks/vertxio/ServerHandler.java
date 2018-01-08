@@ -14,6 +14,7 @@ import shadowsocks.crypto.SSCrypto;
 import shadowsocks.util.CommonUtil;
 import shadowsocks.util.LocalConfig;
 
+import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Arrays;
@@ -138,6 +139,10 @@ public class ServerHandler implements Handler<Buffer> {
             if (bufferLength < hostLength + 4)
                 return false;
             addr = mBufferQueue.getString(2, hostLength + 2);
+
+            // 域名转IP
+            addr = getIp(addr);
+
             current = hostLength + 2;
         }else {
             log.warn("Unsupport addr type " + addrType);
@@ -151,6 +156,28 @@ public class ServerHandler implements Handler<Buffer> {
         connectToRemote(addr, port);
         nextStage();
         return false;
+    }
+
+
+    private String getIp(String domainName) {
+        InetAddress[] ipArr;
+        try {
+            // 获得域名的所有IP
+            ipArr = InetAddress.getAllByName(domainName);
+        } catch (UnknownHostException e) {
+            log.error("UnknownHostException: " + domainName);
+            return "";
+        }
+
+        for (InetAddress ip:ipArr) {
+            if (ip instanceof Inet4Address) {// 仅支持 IPV4
+                return ip.getHostAddress();
+            }
+        }
+
+        // 没有 IPV4 地址
+        log.error("no ipv4 : " + domainName);
+        return "";
     }
 
     private void connectToRemote(String addr, int port) {
