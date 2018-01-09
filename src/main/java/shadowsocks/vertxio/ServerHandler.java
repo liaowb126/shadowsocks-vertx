@@ -116,7 +116,7 @@ public class ServerHandler implements Handler<Buffer> {
             }
         }
 
-        // 跳过8个0
+        // 跳过8个byte
         compactBuffer(8);
 
         int addrType = mBufferQueue.getByte(0);
