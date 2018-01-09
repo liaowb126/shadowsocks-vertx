@@ -142,6 +142,9 @@ public class ServerHandler implements Handler<Buffer> {
 
             // 域名转IP
             addr = getIp(addr);
+            if (addr == null) {// DNS 解析不到 ipv4 地址
+                return true;
+            }
 
             current = hostLength + 2;
         }else {
@@ -166,7 +169,7 @@ public class ServerHandler implements Handler<Buffer> {
             ipArr = InetAddress.getAllByName(domainName);
         } catch (UnknownHostException e) {
             log.error("UnknownHostException: " + domainName);
-            return "";
+            return null;
         }
 
         for (InetAddress ip:ipArr) {
@@ -177,7 +180,7 @@ public class ServerHandler implements Handler<Buffer> {
 
         // 没有 IPV4 地址
         log.error("no ipv4 : " + domainName);
-        return "";
+        return null;
     }
 
     private void connectToRemote(String addr, int port) {
