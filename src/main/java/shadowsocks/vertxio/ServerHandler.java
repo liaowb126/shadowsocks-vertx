@@ -89,6 +89,11 @@ public class ServerHandler implements Handler<Buffer> {
     private boolean handleStageAddress() {
 
         int bufferLength = mBufferQueue.length();
+        // checkNow(8) + addrType(1)
+        if (bufferLength < 9) {
+            return false;
+        }
+
         String addr = null;
         int current = 0;
         // 在 addrType 前，有8个byte的校验码
@@ -122,12 +127,11 @@ public class ServerHandler implements Handler<Buffer> {
         int addrType = mBufferQueue.getByte(0);
 
         if (addrType == ADDR_TYPE_IPV4) {
-            // addrType(1) + ipv4(4) + port(2)
-            if (bufferLength < 7)
+            // checkNow(8) + addrType(1) + ipv4(4) + port(2)
+            if (bufferLength < 15)
                 return false;
             try{
-                //remote the "/"
-                addr = InetAddress.getByAddress(mBufferQueue.getBytes(1, 5)).toString().substring(1);
+                addr = InetAddress.getByAddress(mBufferQueue.getBytes(1, 5)).getHostAddress();
             }catch(UnknownHostException e){
                 log.error("UnknownHostException.", e);
                 return true;
@@ -135,8 +139,8 @@ public class ServerHandler implements Handler<Buffer> {
             current = 5;
         }else if (addrType == ADDR_TYPE_HOST) {
             short hostLength = mBufferQueue.getUnsignedByte(1);
-            // addrType(1) + len(1) + host + port(2)
-            if (bufferLength < hostLength + 4)
+            // checkNow(8) + addrType(1) + len(1) + host + port(2)
+            if (bufferLength < hostLength + 12)
                 return false;
             addr = mBufferQueue.getString(2, hostLength + 2);
 
