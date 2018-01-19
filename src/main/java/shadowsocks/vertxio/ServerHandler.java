@@ -188,8 +188,7 @@ public class ServerHandler implements Handler<Buffer> {
     }
 
     private void connectToRemote(String addr, int port) {
-        // 5s timeout.
-        NetClientOptions options = new NetClientOptions().setConnectTimeout(5000);
+        NetClientOptions options = new NetClientOptions().setConnectTimeout(1000);
         NetClient client = mVertx.createNetClient(options);
         client.connect(port, addr, res -> {  // connect handler
             if (!res.succeeded()) {
