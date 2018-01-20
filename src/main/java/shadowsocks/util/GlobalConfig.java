@@ -26,7 +26,7 @@ public class GlobalConfig{
     private AtomicReference<String> mConfigFile;
     private AtomicInteger mPort;
     private AtomicInteger mLocalPort;
-    private AtomicInteger mTimeout; /* UNIT second */
+    private AtomicInteger mTimeout;
     private AtomicBoolean mIsServerMode;
     private AtomicInteger mIvLen;// IV 长度
 
@@ -35,7 +35,7 @@ public class GlobalConfig{
     final private static String DEFAULT_SERVER = "127.0.0.1";
     final private static int DEFAULT_PORT = 8388;
     final private static int DEFAULT_LOCAL_PORT = 9999;
-    final private static int DEFAULT_TIMEOUT = 300;
+    final private static int DEFAULT_TIMEOUT = 1000;// 1 秒
     final private static int DEFAULT_IV_LEN = 16;
 
     final static String SERVER_MODE = "server_mode";
