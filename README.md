@@ -33,7 +33,13 @@ Note:
     5. Additional: iv_len, set the iv length, the value must be greater than 16 ! 
     6. Not support: method, just only rc4-sha512 ! 
 
-You could refer to demo config etc/demo.json.
+You could refer to demo config etc/demo.json.  
+
+Set linux tcp config (/etc/sysctl.conf) , recommend as follow:  
+net.ipv4.tcp_keepalive_time = 600  (default 7200)  
+net.ipv4.tcp_keepalive_intvl = 20  (default 75)  
+net.ipv4.tcp_keepalive_probes = 4  (default 9)
+
 
 How to run:
 ===========
