@@ -35,10 +35,12 @@ Note:
 
 You could refer to demo config etc/demo.json.  
 
-Set linux tcp config (/etc/sysctl.conf) , recommend as follow:  
-net.ipv4.tcp_keepalive_time = 600  (default 7200)  
-net.ipv4.tcp_keepalive_intvl = 20  (default 75)  
-net.ipv4.tcp_keepalive_probes = 4  (default 9)
+
+Edit /etc/sysctl.conf , recommended as follows:
+
+    net.ipv4.tcp_keepalive_time = 600  (default 7200)  
+    net.ipv4.tcp_keepalive_intvl = 20  (default 75)  
+    net.ipv4.tcp_keepalive_probes = 4  (default 9)
 
 
 How to run:
