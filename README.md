@@ -9,7 +9,8 @@ shadowsocks-vertx
 
 shadowsocks-vertx is a lightweight tunnel proxy. It is based on vert.x.
 
-Java 8 is needed.
+Java 8 is needed.  
+Gradle is needed.
 
 It is **unstable**! If you encounter any problems, please open an issue.
 
@@ -42,6 +43,7 @@ Edit /etc/sysctl.conf , recommended as follows:
     net.ipv4.tcp_keepalive_intvl = 20  (default 75)  
     net.ipv4.tcp_keepalive_probes = 4  (default 9)
 
+sysctl -p
 
 How to run:
 ===========
@@ -59,3 +61,5 @@ Then you will get **shadowsocks-fat-ver.jar** in build/libs.
 $ java -jar shadowsocks-fat-ver.jar configFile
 ```
 
+### (3) web browser
+Chrome + SwitchyOmega. 
