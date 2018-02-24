@@ -37,13 +37,17 @@ Note:
 You could refer to demo config etc/demo.json.  
 
 
-Edit /etc/sysctl.conf , recommended as follows:
+Edit /etc/sysctl.conf ,then ```sysctl -p``` .  
+Recommended as follows:
 
     net.ipv4.tcp_keepalive_time = 600  (default 7200)  
     net.ipv4.tcp_keepalive_intvl = 20  (default 75)  
     net.ipv4.tcp_keepalive_probes = 4  (default 9)
 
-sysctl -p
+
+
+
+It is recommended to use TCP-BBR !
 
 How to run:
 ===========
@@ -56,7 +60,7 @@ $ gradle clean build fatJar
 
 Then you will get **shadowsocks-fat-ver.jar** in build/libs.
 
-### (2) run
+### (2) run both server (VPS) and client (Your PC)
 ```
 $ java -jar shadowsocks-fat-ver.jar configFile
 ```
