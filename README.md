@@ -60,7 +60,7 @@ $ gradle clean build fatJar
 
 Then you will get **shadowsocks-fat-ver.jar** in build/libs.
 
-### (2) run both server (VPS) and client (Your PC)
+### (2) run both server and client 
 ```
 $ java -jar shadowsocks-fat-ver.jar configFile
 ```
