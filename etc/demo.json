@@ -1,9 +1,9 @@
 {
-    "server":"my_server_ip",
-    "server_mode":false,
-    "server_port":8388,
-    "local_port":1080,
-    "password":"mypassword",
-    "timeout":360,
-    "iv_len":31
+    "server":"my_server_ip",// 服务器的IP
+    "server_mode":false,// 服务器为true，客户端为false
+    "server_port":8388,// 服务器监听端口
+    "local_port":1080,// 客户端监听端口
+    "password":"mypassword",// 密码，建议设置复杂密码
+    "timeout":360,// 访问超时时间，单位毫秒。建议 1000-5000
+    "iv_len":31// IV长度，建议 在 17-128 之间
 }
