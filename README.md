@@ -7,7 +7,7 @@ shadowsocks-vertx
 
 #Intro
 
-shadowsocks-vertx is a lightweight tunnel proxy. It is based on vert.x.
+shadowsocks-vertx is a socks5 proxy. It is based on vert.x.
 
 Java 8 is needed.  
 Gradle is needed.
