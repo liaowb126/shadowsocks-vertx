@@ -20,7 +20,7 @@ About vert.x, please refer to http://vertx.io/
 
 **Not compatible with original Shadowsocks**!
 
-Not support ipv6.
+Not support ipv6. Not support udp.
 
 Support JSON config file. Please refer to https://github.com/shadowsocks/shadowsocks/wiki/Configuration-via-Config-File.
 Note:
